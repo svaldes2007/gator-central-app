@@ -1,9 +1,14 @@
 .App {
   text-align: center;
-  height: 2622px;
-  width: 1206 px;
+  
+}
+
+.phoneSize{
+  height: 720px;
+  width: 350px;
   border-width: 1px;
   border-style:solid;
   border-color:black;
+  background-color: red;
 }
 
