@@ -45,12 +45,10 @@ function App() {
 
   return (
     <div className="App">
-      <div className="phoneSize"></div>
-
-
       <div className="bar">
-        <p className="barTitle">Today's Date</p>
+        <p className="barTitle">Gator Central</p>
         <img className="logo" src ={logo} alt="gator logo"/>
+        <p className="dateTitle">Date</p>
         <div className="tabs">
           <TabButton tab={currentTab} setTab={setCurrentTab} type="schedule" message="Schedule"/>
           <TabButton tab={currentTab} setTab={setCurrentTab} type="lunch" message="Lunch"/>
@@ -61,12 +59,12 @@ function App() {
 
              
         {currentTab === "schedule" ? (
-          // <p className="pageStandIn">schedule</p>
-          <ScheduleDisplay
-            userClasses={userClasses}
-            egSchedule={egSchedule}
-            eatThenMeet={eatThenMeet}
-          />
+          <p className="pageStandIn">schedule</p>
+          // <ScheduleDisplay
+          //   userClasses={userClasses}
+          //   egSchedule={egSchedule}
+          //   eatThenMeet={eatThenMeet}
+          // />
         ) : currentTab === "lunch" ? (
           <p className="pageStandIn">lunch</p>
         ) : currentTab === "profile" ? (
