@@ -7,7 +7,7 @@ import ScheduleDisplay from "./ScheduleDisplay";
 function App() {
 
   const [currentTab, setCurrentTab] = useState("schedule");
-
+  const today = new Date();
   const eatThenMeet  = true;
 
   //figure out how to save datain between user opening app... but usestates for now 
@@ -32,13 +32,21 @@ function App() {
 
   const egSchedule = [
     { name: "Morning Meeting", start: "7:45", end: "8:00" },
-    { name: "B", start: "8:10", end: "9:10" },
-    { name: "C", start: "9:20", end: "10:20" },
-    { name: "Flex", start: "10:30", end: "10:55" },
-    { name: "D", start: "11:05", end: "11:00" },
-    { name: "E1", start: "12:05", end: "1:05" },
-    { name: "E2", start: "12:30", end: "1:30" },
-    { name: "F", start: "1:40", end: "2:40" } 
+    { name: "A", start: "8:10", end: "9:10" },
+    { name: "B", start: "9:20", end: "10:20" },
+    { name: "Advisory", start: "10:30", end: "10:55" },
+    { name: "C", start: "11:05", end: "11:55" },
+    ...(eatThenMeet 
+      ? [
+          { name: "D", start: "12:05", end: "1:05" },
+          { name: "Lunch", start: "1:05", end: "1:30" }
+        ]
+      : [
+          {name: "Lunch", start: "11:55", end: "12:20"},
+          { name: "D", start: "12:30", end: "1:30" }
+        ]
+    ),
+    { name: "E", start: "1:40", end: "2:40" } 
   ];
 
 
@@ -48,7 +56,7 @@ function App() {
       <div className="bar">
         <p className="barTitle">Gator Central</p>
         <img className="logo" src ={logo} alt="gator logo"/>
-        <p className="dateTitle">Date</p>
+        <p className="dateTitle">{today.toDateString()}</p>
         <div className="tabs">
           <TabButton tab={currentTab} setTab={setCurrentTab} type="schedule" message="Schedule"/>
           <TabButton tab={currentTab} setTab={setCurrentTab} type="lunch" message="Lunch"/>
@@ -59,12 +67,10 @@ function App() {
 
              
         {currentTab === "schedule" ? (
-          <p className="pageStandIn">schedule</p>
-          // <ScheduleDisplay
-          //   userClasses={userClasses}
-          //   egSchedule={egSchedule}
-          //   eatThenMeet={eatThenMeet}
-          // />
+          <ScheduleDisplay
+            userClasses={userClasses}
+            egSchedule={egSchedule}
+          />
         ) : currentTab === "lunch" ? (
           <p className="pageStandIn">lunch</p>
         ) : currentTab === "profile" ? (
